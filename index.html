@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ECCE AskDesk Uganda</title>
+<style>
+:root{
+  --navy:#172033;
+  --navy2:#25324a;
+  --green:#0F7A43;
+  --green2:#0B5F36;
+  --gold:#F4BE37;
+  --gold2:#FFE8A3;
+  --red:#B42318;
+  --cream:#FFF9EA;
+  --mist:#F3F7F4;
+  --paper:#FFFFFF;
+  --ink:#172033;
+  --muted:#5F6B7A;
+  --line:#DDE5DE;
+  --soft:#F7FAF7;
+  --shadow:0 18px 45px rgba(23,32,51,.10);
+  --radius:24px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI", "Aptos", "Trebuchet MS", Arial, sans-serif;
+  margin:0;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(244,190,55,.42), transparent 30%),
+    radial-gradient(circle at 92% 10%, rgba(15,122,67,.28), transparent 32%),
+    radial-gradient(circle at 12% 82%, rgba(180,35,24,.12), transparent 28%),
+    radial-gradient(circle at 86% 76%, rgba(244,190,55,.26), transparent 30%),
+    linear-gradient(135deg,#fffaf0 0%,#eef8f0 45%,#f8fbff 100%);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.55;
+}
+.wrap{max-width:1340px;margin:auto;padding:22px}
+.hidden{display:none!important}
+.top{
+  background:rgba(255,255,255,.96);
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:16px 18px;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  box-shadow:var(--shadow);
+  position:sticky;
+  top:10px;
+  z-index:10;
+  backdrop-filter:blur(12px);
+}
+.logo{width:88px;height:auto;object-fit:contain}
+.brand{flex:1}
+.brand h1{margin:0;font-size:1.72rem;line-height:1.1;letter-spacing:-.02em;color:var(--navy)}
+.brand p{margin:5px 0 0;color:var(--muted);font-size:.93rem}
+.badge{background:linear-gradient(135deg,var(--green),var(--green2));color:white;border-radius:999px;padding:8px 13px;font-weight:700;font-size:.82rem;white-space:nowrap}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.nav button{width:auto}
+button{
+  cursor:pointer;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:16px;
+  padding:11px 14px;
+  margin:4px 0;
+  color:var(--ink);
+  font-size:.92rem;
+  font-weight:600;
+  transition:.18s ease;
+}
+button:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(23,32,51,.10)}
+.btn,.active{background:var(--navy)!important;color:white!important;border-color:var(--navy)!important}
+.gold{background:var(--gold)!important;border-color:#D9A21B!important;color:#1E1A0B!important}
+.green{background:var(--green)!important;border-color:var(--green)!important;color:white!important}
+.panel,.card{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.91)),
+    radial-gradient(circle at top right, rgba(244,190,55,.10), transparent 38%);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin:18px 0}
+h2{font-size:2.35rem;line-height:1.08;margin:.1rem 0 .7rem;letter-spacing:-.035em;color:var(--navy)}
+h3{font-size:1.18rem;margin:.1rem 0 .7rem;color:var(--navy)}
+h4{font-size:1rem;margin:0 0 .4rem}
+p{margin:.55rem 0}
+.small{font-size:.88rem;color:var(--muted);line-height:1.48}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.card.accent-green{border-top:5px solid var(--green)}
+.card.accent-gold{border-top:5px solid var(--gold)}
+.card.accent-navy{border-top:5px solid var(--navy)}
+.toolGrid{display:grid;grid-template-columns:290px minmax(0,1fr) 390px;gap:18px;align-items:start}
+.role,.topic{display:flex;gap:10px;width:100%;text-align:left;align-items:center}
+.role span:first-child,.topic span:first-child{font-size:1.18rem}
+textarea,input,select{
+  width:100%;
+  min-height:46px;
+  border:1px solid #C9D5CD;
+  border-radius:16px;
+  padding:12px 13px;
+  font-size:.96rem;
+  background:white;
+  font-family:inherit;
+}
+textarea{min-height:120px;resize:vertical}
+label{display:block;margin-top:12px;font-weight:700;color:var(--navy)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.answer{
+  background:linear-gradient(145deg,var(--navy),var(--navy2));
+  color:white;
+  border-radius:22px;
+  padding:20px;
+  margin-top:16px;
+  box-shadow:0 12px 30px rgba(23,32,51,.20);
+}
+.answer section{margin-bottom:14px;line-height:1.58}
+.answer h4{color:var(--gold2);font-size:1rem}
+.source{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);padding:12px;border-radius:14px}
+.score{font-size:2.75rem;font-weight:800;letter-spacing:-.04em;color:var(--navy)}
+.progress{height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));width:0%;transition:.25s}
+.checkItem{border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px;background:#fff}
+.warning{background:#FFF7E0;color:#7A4B00;border:1px solid #F6D784;border-radius:14px;padding:10px;margin-top:10px}
+.demo{display:grid;gap:9px}
+.step{display:flex;gap:10px;padding:11px;border:1px solid var(--line);border-radius:16px;background:white}
+.num{background:var(--green);color:white;border-radius:50%;width:25px;height:25px;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:bold;flex:none}
+.faqControls{display:grid;grid-template-columns:1fr 240px;gap:10px;margin:14px 0}
+.faqItem{border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0;background:white}
+.faqItem summary{cursor:pointer;font-weight:700;color:var(--navy)}
+.faqMeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.pill{display:inline-block;border-radius:999px;background:var(--mist);border:1px solid var(--line);padding:5px 9px;font-size:.78rem;color:var(--green2);font-weight:700}
+.resource{display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid var(--line);border-radius:16px;padding:14px;background:white;margin:10px 0}
+.toast{position:fixed;right:20px;bottom:20px;background:var(--navy);color:white;padding:12px 16px;border-radius:14px;display:none;z-index:30}
+.footer{margin:24px 0;color:var(--muted);font-size:.86rem;text-align:center}
+.feedbackBadge{position:fixed;right:18px;top:48%;z-index:20;writing-mode:vertical-rl;background:var(--gold);border:1px solid #d99e00;border-radius:15px;padding:14px 10px;font-weight:800;box-shadow:var(--shadow)}
+@media(max-width:1050px){.toolGrid,.hero,.cards,.mini,.faqControls{grid-template-columns:1fr}.top{position:static}.brand h1{font-size:1.4rem}.badge{display:none}.feedbackBadge{position:static;writing-mode:horizontal-tb;margin:8px 0}h2{font-size:1.85rem}}
+</style>
+</head>
+<body>
+<button class="feedbackBadge" onclick="showPage('feedback')">Feedback</button>
+<div class="wrap">
+<header class="top">
+<img src="assets/moes-logo.png" class="logo" alt="Ministry of Education and Sports logo"/>
+<div class="brand"><h1>ECCE AskDesk Uganda</h1><p>Policy-grounded digital helpdesk for Early Childhood Care and Education implementation support</p></div>
+<div class="badge">ECCE Digital Support Tool</div>
+</header>
+
+<nav class="nav">
+<button id="nav-home" class="active" onclick="showPage('home')">Home</button>
+<button id="nav-tool" onclick="showPage('tool')">Use the Tool</button>
+<button id="nav-about" onclick="showPage('about')">About</button>
+<button id="nav-how" onclick="showPage('how')">What to Expect</button>
+<button id="nav-faq" onclick="showPage('faq')">FAQs</button>
+<button id="nav-resources" onclick="showPage('resources')">Resources</button>
+<button id="nav-feedback" onclick="showPage('feedback')">Feedback</button>
+<button id="nav-contact" onclick="showPage('contact')">Support</button>
+</nav>
+
+<section id="page-home">
+<div class="hero">
+<div class="panel">
+<h2>Practical guidance for putting Uganda’s ECCE Policy into action.</h2>
+<p>ECCE AskDesk Uganda helps different users understand what the Early Childhood Care and Education Policy, Implementation Standards and Implementation Guidelines mean in practice. It is built for the people who need quick, clear and source-backed guidance: parents, caregivers, ECCE proprietors, teachers, inspectors, Local Governments, civil society, partners and national-level teams.</p>
+<p>The tool turns policy language into simple answers, action steps, responsible actors, checklists and self-checks. It is especially useful when someone needs to know where to start, what document to prepare, which office is responsible, or what the approved policy direction says.</p>
+<div class="actions"><button class="btn" onclick="showPage('tool')">Start using the tool</button><button class="gold" onclick="showPage('how')">What should I expect?</button><button onclick="showPage('feedback')">Share feedback</button></div>
+</div>
+<div class="panel">
+<h3>What ECCE AskDesk does</h3>
+<p class="small">It answers questions using approved ECCE source material, gives next steps, cites the source reference, and helps users prepare checklists and self-checks.</p>
+<h3>What ECCE AskDesk does not do</h3>
+<p class="small">It does not issue licences, register centres, approve teachers, make inspection decisions, provide legal opinions, or receive child protection case details.</p>
+<h3>Who should use it</h3>
+<p class="small">Parents, proprietors, caregivers, teachers, inspectors, district teams, CSOs, development partners and national teams working on ECCE implementation.</p>
+</div>
+</div>
+<div class="cards">
+<div class="card accent-green"><h3>👪 Parents and guardians</h3><p class="small">Ask what to look for in a safe ECCE centre, how to raise concerns, what parenting programmes mean, and how families can support early learning at home.</p><button onclick="runHomeDemo('parent')">Open parent journey</button></div>
+<div class="card accent-gold"><h3>🏫 ECCE proprietors</h3><p class="small">Prepare for registration, licensing, EMIS onboarding, inspection readiness, teacher records, complaints systems and centre-level compliance.</p><button onclick="runHomeDemo('proprietor')">Open proprietor journey</button></div>
+<div class="card accent-navy"><h3>🏛️ Local Governments</h3><p class="small">Clarify responsibilities for planning, budgeting, licensing, inspection, monitoring, reporting and community mobilisation.</p><button onclick="runHomeDemo('district')">Open district journey</button></div>
+</div>
+<div class="mini">
+<div class="card"><h3>🔎 Ask</h3><p class="small">Ask plain-language questions about the Policy, Standards and Guidelines.</p></div>
+<div class="card"><h3>✅ Check</h3><p class="small">Run a basic readiness self-check for registration, licensing and inspection preparation.</p></div>
+<div class="card"><h3>📝 Prepare</h3><p class="small">Generate checklists that help users know what to do next.</p></div>
+<div class="card"><h3>💬 Improve</h3><p class="small">Submit feedback so the tool becomes more accurate, useful and easier to use.</p></div>
+</div>
+</section>
+
+<section id="page-tool" class="hidden">
+<div class="toolGrid">
+<aside class="card"><h3>1. Choose user role</h3><p class="small">Answers adjust based on who is using the tool.</p><div id="roles"></div><hr/><h3>Demo mode</h3><div id="demoSteps" class="demo"><div class="step"><span class="num">1</span><span class="small">Choose a guided journey from the homepage or below.</span></div><div class="step"><span class="num">2</span><span class="small">The tool fills role, topic and question.</span></div><div class="step"><span class="num">3</span><span class="small">Click Ask ECCE AskDesk.</span></div></div><div class="actions"><button onclick="runDemo('parent')">Parent demo</button><button onclick="runDemo('proprietor')">Proprietor demo</button><button onclick="runDemo('district')">District demo</button></div></aside>
+<main class="card"><h3>2. Ask the helpdesk</h3><div id="topics"></div><textarea id="question">Who licenses pre-primary schools?</textarea><div class="actions"><button class="btn" onclick="ask()">Ask ECCE AskDesk</button><button class="gold" onclick="generateChecklist()">Generate checklist</button><button onclick="copyAnswer()">Copy answer</button><button onclick="downloadAnswer()">Download answer</button><button onclick="window.print()">Print</button></div><div id="answer"></div>
+<div class="card" style="box-shadow:none;margin-top:18px"><div class="actions"><button id="testBtn" class="active" onclick="tab('test')">Testing questions</button><button id="adminBtn" onclick="tab('admin')">Admin import</button></div><div id="testTab"><p class="small">Click a question to load it.</p><div id="testQuestions"></div></div><div id="adminTab" class="hidden"><p class="small">Paste JSON like {"chunks":[...]}. The local administrator token is already configured for this package.</p><textarea id="adminJson"></textarea><button class="btn" onclick="importChunks()">Import chunks</button><p id="adminStatus" class="small"></p></div></div></main>
+<aside class="card"><h3>3. Standards checker</h3><div class="score" id="score">0%</div><div id="category" class="small">Urgent action needed</div><div class="progress"><div class="bar" id="bar"></div></div><p class="small" id="scoreNote">Complete the self-check below.</p><div class="actions"><button onclick="downloadCompliance()">Download self-check</button><button onclick="resetCompliance()">Reset</button></div><div id="compliance"></div></aside>
+</div>
+</section>
+
+<section id="page-about" class="hidden">
+<div class="panel"><h2>About ECCE AskDesk Uganda</h2>
+<p>ECCE AskDesk Uganda is a policy-grounded digital helpdesk designed to support the implementation of Uganda’s Early Childhood Care and Education Policy. It helps users move from reading policy documents to understanding what action is required, who is responsible, and where official guidance should be sought.</p>
+<p>The tool demonstrates how digital assistance can support policy implementation, public awareness, compliance preparation, user guidance and stakeholder coordination in the ECCE sector. It draws from the ECCE Policy, Implementation Standards and Implementation Guidelines that have been prepared as source material for the knowledge base.</p>
+<p>ECCE AskDesk supports understanding and preparation. Official decisions on registration, licensing, inspection, enforcement, teacher registration, legal interpretation and child protection remain with the mandated government institutions and statutory bodies.</p>
+</div>
+<div class="cards">
+<div class="card accent-green"><h3>Why the tool exists</h3><p class="small">Many ECCE actors need fast, practical guidance. The Policy, Standards and Guidelines contain the answers, but users may not always know where to look. ECCE AskDesk helps bridge that gap.</p></div>
+<div class="card accent-gold"><h3>Who it serves</h3><p class="small">Parents, proprietors, teachers, caregivers, inspectors, Local Governments, CSOs, partners, MoES teams and other stakeholders involved in ECCE implementation.</p></div>
+<div class="card accent-navy"><h3>How it works</h3><p class="small">The tool retrieves relevant source material and presents a structured answer with a simple explanation, policy basis, next steps, responsible actor, source and escalation note.</p></div>
+</div>
+</section>
+
+<section id="page-how" class="hidden">
+<div class="panel"><h2>What users should expect</h2>
+<p>ECCE AskDesk is designed to give practical, source-backed guidance. It works best when users ask clear questions about ECCE implementation, registration, licensing, standards, inspection, parenting programmes, Local Government roles, EMIS, child safety, teacher/caregiver requirements or partner support.</p>
+<p>Every answer is expected to help the user understand the issue, see what the approved documents say, know what to do next, identify who is responsible, and know when to seek official guidance.</p>
+</div>
+<div class="cards">
+<div class="card accent-green"><h3>What the tool gives</h3><p class="small">A simple answer, a short explanation of the policy basis, practical next steps, responsible actors, source references and an escalation note where official follow-up is required.</p></div>
+<div class="card accent-gold"><h3>What users should do</h3><p class="small">Choose the role that best fits them, ask a specific question, read the source reference, follow the next steps, and contact the relevant authority where approval or official interpretation is needed.</p></div>
+<div class="card accent-navy"><h3>What the tool cannot do</h3><p class="small">It cannot issue licences, register centres, approve teachers, replace inspectors, provide legal advice, receive abuse case details or make child protection decisions.</p></div>
+</div>
+<div class="panel" style="margin-top:18px"><h3>Examples of good questions</h3>
+<ul><li>Who licenses pre-primary schools?</li><li>What is required for EMIS onboarding?</li><li>What should parents look for in a safe ECCE centre?</li><li>Can ECCE centres be inspected without prior notice?</li><li>What is the role of Local Governments in ECCE implementation?</li><li>What does the Policy say about parenting programmes?</li></ul>
+<h3>When to seek official guidance</h3><p>Seek official guidance when the issue involves registration, licensing, enforcement, inspection findings, legal interpretation, teacher registration decisions, child protection concerns, or any matter where a government office must make the final decision.</p></div>
+</section>
+
+<section id="page-faq" class="hidden">
+<div class="panel"><h2>Frequently Asked Questions</h2><p>Browse common ECCE Policy questions or search for a topic. Click “Ask this question” to send it into the helpdesk.</p>
+<div class="faqControls"><input id="faqSearch" placeholder="Search FAQs by keyword..." oninput="renderFAQList()"/><select id="faqFilter" onchange="renderFAQList()"><option value="">All topics</option><option value="licens">Registration and licensing</option><option value="teacher">Teachers and caregivers</option><option value="parent">Parents and communities</option><option value="local government">Local Government roles</option><option value="child">Child safety</option><option value="emis">EMIS and data</option></select></div>
+<p id="faqStatus" class="small"></p><div id="faqList"></div></div>
+</section>
+
+<section id="page-resources" class="hidden">
+<div class="panel"><h2>Resource Library</h2><p class="small"><strong>Lightweight package note:</strong> The app files are packaged separately from the large policy documents to avoid download failure. To activate local document downloads, place the ECCE Policy PDF and BRMS Word document in the frontend/resources folder using the filenames shown below.</p>
+<p>The resource library lists the core documents that support ECCE implementation and quality assurance. In this lightweight download, the large documents are not embedded so that the app can download successfully. Place the official files in the frontend/resources folder to activate local downloads. These documents should be used alongside official guidance from the Ministry of Education and Sports and the relevant Local Government education offices.</p>
+
+<div class="resource"><div><strong>ECCE Policy, 2025</strong><br><span class="small"><strong>File name to add:</strong> ECCE-Policy-2025-Signed.pdf<br>The signed Early Childhood Care and Education Policy sets out Uganda’s vision, mission, objectives, guiding principles, policy actions, implementation framework, roles and responsibilities, financing approach, monitoring and communication direction for ECCE.</span></div><a href="resources/ECCE-Policy-2025-Signed.pdf" target="_blank" download><button class="green">Download</button></a></div>
+
+<div class="resource"><div><strong>Basic Requirements and Minimum Standards for Pre-Primary Schools in Uganda</strong><br><span class="small"><strong>File name to add:</strong> BRMS-Pre-Primary-Schools-Uganda-February-2025.docx<br>The BRMS provides the essential requirements and minimum standards for pre-primary schools, including learning environment, curriculum and pedagogy, staffing, child health and wellbeing, nutrition, safety and security, parent and community engagement, financial management, governance, licensing and registration.</span></div><a href="resources/BRMS-Pre-Primary-Schools-Uganda-February-2025.docx" target="_blank" download><button class="gold">Download</button></a></div>
+
+<div class="resource"><div><strong>Standards Self-Check</strong><br><span class="small">Use the built-in self-check to review basic readiness areas before seeking official registration, licensing, inspection or compliance follow-up.</span></div><button onclick="showPage('tool')">Use self-check</button></div>
+</div>
+</section>
+
+<section id="page-feedback" class="hidden">
+<div class="panel"><h2>Feedback</h2>
+<p>Your feedback helps improve ECCE AskDesk. We are especially interested in whether the answers are accurate, clear, practical, properly sourced and appropriate for each user group. When you submit this form, your email app will open a message addressed to namara284@gmail.com.</p>
+<p class="small">Please do not submit personal child information, child protection case details, confidential centre records or sensitive legal information through this form.</p>
+<label>Your role</label><select id="fbRole"><option>Parent/Guardian</option><option>ECCE Proprietor</option><option>District Officer</option><option>Inspector</option><option>Teacher/Caregiver</option><option>CSO/Partner</option><option>MoES Officer</option><option>Other</option></select>
+<label>What were you trying to do?</label><textarea id="fbGoal" placeholder="Example: I was trying to understand what a proprietor needs before licensing."></textarea>
+<label>What worked well?</label><textarea id="fbWorked" placeholder="Tell us what was clear, useful or accurate."></textarea>
+<label>What should be improved?</label><textarea id="fbText" placeholder="Tell us what was unclear, missing, inaccurate or difficult to use."></textarea>
+<label>Optional contact</label><input id="fbContact" placeholder="Email or phone, optional"/>
+<button class="btn" onclick="submitFeedbackPage()">Submit feedback</button><p id="fbStatus" class="small"></p></div>
+<div class="cards"><div class="card accent-green"><h3>Accuracy feedback</h3><p class="small">Tell us where an answer does not match the Policy, Standards or Guidelines.</p></div><div class="card accent-gold"><h3>Usability feedback</h3><p class="small">Tell us where the wording, layout or steps are confusing.</p></div><div class="card accent-navy"><h3>Missing content</h3><p class="small">Tell us which questions, topics, roles or source documents should be added.</p></div></div>
+</section>
+
+<section id="page-contact" class="hidden">
+<div class="panel"><h2>Support and escalation</h2><p>ECCE AskDesk helps users understand policy guidance, but some matters require official follow-up. Use this page to identify where a user should go when the tool cannot make a decision.</p></div>
+<div class="cards">
+<div class="card accent-green"><h3>Policy clarification</h3><p class="small">For national policy interpretation, implementation guidance or official clarification, refer to the Ministry of Education and Sports or the delegated ECCE technical office.</p></div>
+<div class="card accent-gold"><h3>Registration and licensing</h3><p class="small">For centre registration, licensing, renewal, inspection or compliance follow-up, contact the relevant District, City or Municipal Local Government education office.</p></div>
+<div class="card accent-navy"><h3>Teacher registration</h3><p class="small">For teacher registration, licensing or professional status questions, refer to the relevant teacher registration authority or the National Teacher Council process where applicable.</p></div>
+</div>
+<div class="cards"><div class="card"><h3>Child protection concerns</h3><p class="small">Do not enter child protection case details into this tool. Use authorised child protection structures such as the centre manager where safe, probation and family welfare structures, Local Government child protection officers, police child and family protection structures or other approved referral systems.</p></div><div class="card"><h3>Technical support</h3><p class="small">For tool errors, broken pages, missing answers or import issues, use the Feedback page and describe what happened, which role you selected and what question you asked.</p></div><div class="card"><h3>Partner or pilot interest</h3><p class="small">For pilot testing, technical review, content expansion or deployment discussions, prepare feedback on the tool’s accuracy, user experience, source coverage and institutional fit.</p></div></div>
+</section>
+
+<div class="footer">ECCE AskDesk Uganda · Digital support for ECCE Policy implementation and quality assurance</div>
+</div><div id="toast" class="toast"></div>
+
+<script>
+const API = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : window.location.origin;
+const EMBEDDED_FAQS=[{"faq_number": 1, "question": "What is ECCE?", "primary_chunk_ids": ["POL-2025-05-P23-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 2, "question": "What age groups does the ECCE Policy cover?", "primary_chunk_ids": ["POL-2025-05-P24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 3, "question": "What is the difference between day care and pre-primary education?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 4, "question": "Why is ECCE important?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 5, "question": "What is the vision of the ECCE Policy?", "primary_chunk_ids": ["POL-2025-05-P19-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 6, "question": "What is the mission of the ECCE Policy?", "primary_chunk_ids": ["POL-2025-05-P20-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 7, "question": "What is the goal of the ECCE Policy?", "primary_chunk_ids": ["POL-2025-05-P21-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 8, "question": "What are the specific objectives of the ECCE Policy?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 9, "question": "What principles guide ECCE implementation?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 10, "question": "What does the Policy say about child welfare?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 11, "question": "Who registers pre-primary schools?", "primary_chunk_ids": ["STD-2025-023-S19-C01", "GUI-2025-156-G156-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 12, "question": "Who licenses pre-primary schools?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 13, "question": "Who registers and licenses other ECCE providers?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 14, "question": "Can an ECCE provider operate without registration and licensing?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 15, "question": "Does an ECCE licence need to be renewed?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 16, "question": "What should a proprietor prepare before applying for licensing?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 17, "question": "What is required for EMIS onboarding?", "primary_chunk_ids": ["STD-2025-023-S19-C01", "GUI-2025-156-G156-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 18, "question": "Why is the nearest primary school EMIS number needed?", "primary_chunk_ids": ["STD-2025-023-S19-C01", "GUI-2025-156-G156-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 19, "question": "What happens when an ECCE centre operates without registration?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 20, "question": "Can an ECCE centre operate as a boarding institution?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 21, "question": "Do pre-primary teachers need to be registered and licensed?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 22, "question": "Can someone teach in a pre-primary school without registration and licensing?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 23, "question": "Who enforces teacher registration and licensing?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 24, "question": "What does the Policy say about professionalising ECCE personnel?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 25, "question": "What is CPD for ECCE teachers and caregivers?", "primary_chunk_ids": ["POL-2025-06-P34-C01", "STD-2025-023-S24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 26, "question": "What should proprietors do to retain ECCE staff?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 27, "question": "Who develops teaching guides for ECCE?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 28, "question": "Who coordinates ECCE training and assessment?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 29, "question": "What are BRMS?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 30, "question": "What are ELDS?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 31, "question": "Who sets ECCE standards?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 32, "question": "Who checks whether ECCE centres meet standards?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 33, "question": "Can ECCE centres be inspected without prior notice?", "primary_chunk_ids": ["STD-2025-023-S38-C01", "POL-2025-06-P33-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 34, "question": "What happens if a centre fails to meet licensing standards?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 35, "question": "What is the complaint and reporting system for?", "primary_chunk_ids": ["STD-2025-023-S37-C01", "POL-2025-06-P37-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 36, "question": "How can parents verify whether staff are legitimate?", "primary_chunk_ids": ["POL-2025-06-P39-C01", "POL-2025-06-P40-C01", "POL-2025-08-P70-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 37, "question": "What is formal ECCE?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 38, "question": "What is non-formal ECCE?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 39, "question": "What is the role of MoES?", "primary_chunk_ids": ["POL-2025-08-P57-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 40, "question": "What is the role of Local Governments?", "primary_chunk_ids": ["POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 41, "question": "What is the role of OPM?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 42, "question": "What is the role of MoGLSD?", "primary_chunk_ids": ["POL-2025-08-P60-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 43, "question": "What is the role of MoH?", "primary_chunk_ids": ["POL-2025-08-P61-C01", "POL-2025-06-P48-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 44, "question": "What is the role of MoFPED?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 45, "question": "What is the role of Civil Society?", "primary_chunk_ids": ["POL-2025-08-P67-C01", "POL-2025-08-P65-C01", "POL-2025-08-P66-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 46, "question": "What is the role of the private sector?", "primary_chunk_ids": ["POL-2025-08-P67-C01", "POL-2025-08-P65-C01", "POL-2025-08-P66-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 47, "question": "What is the role of Education Development Partners?", "primary_chunk_ids": ["POL-2025-08-P67-C01", "POL-2025-08-P65-C01", "POL-2025-08-P66-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 48, "question": "What is the role of parents and guardians?", "primary_chunk_ids": ["POL-2025-06-P39-C01", "POL-2025-06-P40-C01", "POL-2025-08-P70-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 49, "question": "What does the Policy say about parenting programmes?", "primary_chunk_ids": ["POL-2025-06-P39-C01", "POL-2025-06-P40-C01", "POL-2025-08-P70-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 50, "question": "How should districts mobilise communities around ECCE?", "primary_chunk_ids": ["POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 51, "question": "What should parents look for in a safe ECCE centre?", "primary_chunk_ids": ["POL-2025-06-P39-C01", "POL-2025-06-P40-C01", "POL-2025-08-P70-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 52, "question": "How should ECCE messages be packaged for communities?", "primary_chunk_ids": ["POL-2025-05-P24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 53, "question": "What is the role of annual advocacy events and campaigns?", "primary_chunk_ids": ["POL-2025-10-P78-C01", "POL-2025-10-P76-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 54, "question": "Why does the Policy require a communication strategy?", "primary_chunk_ids": ["POL-2025-10-P78-C01", "POL-2025-10-P76-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 55, "question": "What does the Policy say about EMIS?", "primary_chunk_ids": ["STD-2025-023-S19-C01", "GUI-2025-156-G156-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 56, "question": "Why should ECCE centres be linked to primary schools?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 57, "question": "What data should ECCE centres provide?", "primary_chunk_ids": ["POL-2025-09-P72-C01", "POL-2025-09-P73-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 58, "question": "What is the purpose of the ECCE baseline survey?", "primary_chunk_ids": ["POL-2025-09-P72-C01", "POL-2025-09-P73-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 59, "question": "What is the purpose of M&E under the ECCE Policy?", "primary_chunk_ids": ["POL-2025-09-P72-C01", "POL-2025-09-P73-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 60, "question": "How should research support ECCE implementation?", "primary_chunk_ids": ["POL-2025-09-P72-C01", "POL-2025-09-P73-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 61, "question": "What does the Policy say about equitable access?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 62, "question": "How will Government support underserved communities?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 63, "question": "When can Government directly provide ECCE services?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 64, "question": "What does the Policy say about children with special needs?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 65, "question": "What does the Policy say about affordability?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 66, "question": "Who is responsible for establishing and managing ECCE centres?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 67, "question": "Can Government invest directly in ECCE?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 68, "question": "How will the ECCE Policy be financed?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 69, "question": "How can partners support ECCE implementation?", "primary_chunk_ids": ["POL-2025-08-P67-C01", "POL-2025-08-P65-C01", "POL-2025-08-P66-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 70, "question": "What is the role of professional networks and associations?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 71, "question": "What is the role of foundation bodies?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 72, "question": "How should partners avoid duplication?", "primary_chunk_ids": ["POL-2025-08-P67-C01", "POL-2025-08-P65-C01", "POL-2025-08-P66-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 73, "question": "What does the Policy say about child protection?", "primary_chunk_ids": ["POL-2025-06-P37-C01", "POL-2025-08-P60-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 74, "question": "What should a teacher do if they suspect abuse?", "primary_chunk_ids": ["POL-2025-06-P34-C01", "STD-2025-023-S24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 75, "question": "How are health and nutrition linked to ECCE?", "primary_chunk_ids": ["POL-2025-08-P61-C01", "POL-2025-06-P48-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 76, "question": "What health services does MoH provide in relation to ECCE?", "primary_chunk_ids": ["POL-2025-08-P61-C01", "POL-2025-06-P48-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 77, "question": "What is the role of probation and family welfare systems?", "primary_chunk_ids": ["POL-2025-08-P60-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 78, "question": "What does occupational safety mean for ECCE centres?", "primary_chunk_ids": ["POL-2025-06-P37-C01", "POL-2025-08-P60-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 79, "question": "Who develops ECCE curricula?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 80, "question": "Who develops learning environment guidelines?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 81, "question": "What does the Policy say about teaching methods and instructional materials?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 82, "question": "What does the Policy say about school readiness?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 83, "question": "How does ECCE support transition to primary education?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 84, "question": "What cross-cutting issues does the Policy mainstream?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 85, "question": "What does the Policy say about ICT in ECCE?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 86, "question": "What does the Policy say about language and communication with children?", "primary_chunk_ids": ["POL-2025-05-P24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 87, "question": "What does the Policy say about holistic development?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 88, "question": "What should a district include in an ECCE implementation plan?", "primary_chunk_ids": ["POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 89, "question": "Who assigns ECCE responsibilities within Local Government structures?", "primary_chunk_ids": ["POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 90, "question": "What does support supervision mean in ECCE?", "primary_chunk_ids": ["POL-2025-05-P19-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 91, "question": "What is a Centre Management Committee?", "primary_chunk_ids": ["POL-2025-05-P24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 92, "question": "What is the role of social dialogue in ECCE?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 93, "question": "Can ECCE AskDesk approve my centre for licensing?", "primary_chunk_ids": ["STD-2025-023-S20-C01", "POL-2025-08-P63-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 94, "question": "Can ECCE AskDesk decide whether a teacher is legally allowed to teach?", "primary_chunk_ids": ["POL-2025-06-P34-C01", "STD-2025-023-S24-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 95, "question": "Can I report a child protection case through ECCE AskDesk?", "primary_chunk_ids": ["POL-2025-06-P37-C01", "POL-2025-08-P60-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 96, "question": "Can the tool provide legal advice on ECCE disputes?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 97, "question": "What should I do if a centre refuses inspection?", "primary_chunk_ids": ["STD-2025-023-S38-C01", "POL-2025-06-P33-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 98, "question": "What should parents do if a centre appears unsafe?", "primary_chunk_ids": ["STD-2025-023-S37-C01", "POL-2025-06-P37-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 99, "question": "What if the Policy documents do not answer my question?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}, {"faq_number": 100, "question": "What should users remember when using ECCE AskDesk?", "primary_chunk_ids": ["POL-2025-05-P22-C01"], "approval_status": "verified_for_prototype_build"}];
+let selectedRole="ECCE Proprietor",selectedTopic="Registration and Licensing",complianceItems=[],lastAnswerText="",lastComplianceText="",faqCache=[];
+const roles=[["District Officer","🏛️"],["Inspector","📋"],["ECCE Proprietor","🏫"],["Teacher/Caregiver","👩🏽‍🏫"],["Parent/Guardian","👪"],["CSO/Partner","🤝"],["MoES Officer","🇺🇬"]];
+const topics=[["Ask the ECCE Policy","🔎"],["Registration and Licensing","🪪"],["Roles and Responsibilities","👥"],["Standards and Compliance","✅"],["Inspection and Support Supervision","📋"],["Parents and Communities","💬"],["Teachers and Caregivers","🎓"],["Generate a Checklist or Brief","📝"]];
+const tests=[["Parent/Guardian","Parents and Communities","What should parents look for in a safe ECCE centre?"],["ECCE Proprietor","Registration and Licensing","What should a proprietor prepare before applying for licensing?"],["District Officer","Roles and Responsibilities","What is the role of Local Government in ECCE implementation?"],["Inspector","Inspection and Support Supervision","Can ECCE centres be inspected without prior notice?"],["Teacher/Caregiver","Teachers and Caregivers","Do pre-primary teachers need to be registered and licensed?"],["CSO/Partner","Roles and Responsibilities","How can partners support ECCE implementation?"],["MoES Officer","Ask the ECCE Policy","What are the specific objectives of the ECCE Policy?"],["Parent/Guardian","Parents and Communities","I want to report a child abuse case here. What should I do?"],["ECCE Proprietor","Registration and Licensing","Can this tool approve my licence?"]];
+function toast(m){let t=document.getElementById("toast");t.innerText=m;t.style.display="block";setTimeout(()=>t.style.display="none",2200)}
+function showPage(p){["home","tool","about","how","faq","resources","feedback","contact"].forEach(x=>{document.getElementById("page-"+x).classList.toggle("hidden",x!==p);let n=document.getElementById("nav-"+x);if(n)n.classList.toggle("active",x===p)});if(p==="faq")loadFAQs();window.scrollTo({top:0,behavior:"smooth"})}
+function renderRoles(){document.getElementById("roles").innerHTML=roles.map(x=>`<button class="role ${x[0]===selectedRole?'active':''}" onclick="selectedRole='${x[0]}';renderRoles();"><span>${x[1]}</span><span>${x[0]}</span></button>`).join("")}
+function renderTopics(){document.getElementById("topics").innerHTML=topics.map(x=>`<button class="topic ${x[0]===selectedTopic?'active':''}" onclick="selectedTopic='${x[0]}';renderTopics();"><span>${x[1]}</span><span>${x[0]}</span></button>`).join("")}
+function renderTests(){document.getElementById("testQuestions").innerHTML=tests.map(x=>`<button onclick="loadTest('${x[0]}','${x[1]}',\`${x[2]}\`)"><b>${x[0]}</b><br><span class="small">${x[2]}</span></button>`).join("")}
+function loadTest(r,t,q){selectedRole=r;selectedTopic=t;document.getElementById("question").value=q;renderRoles();renderTopics();toast("Question loaded")}
+function runHomeDemo(type){showPage("tool");setTimeout(()=>runDemo(type),100)}
+function runDemo(type){let d={parent:["Parent/Guardian","Parents and Communities","What should parents look for in a safe ECCE centre?",["Choose Parent/Guardian","Ask about a safe centre","Show source-backed answer","Show reporting guidance"]],proprietor:["ECCE Proprietor","Registration and Licensing","What should a proprietor prepare before applying for licensing?",["Choose ECCE Proprietor","Ask licensing question","Generate checklist","Use standards checker"]],district:["District Officer","Roles and Responsibilities","What is the role of Local Government in ECCE implementation?",["Choose District Officer","Ask LG role question","Show planning/licensing/inspection roles","Download answer"]]}[type];loadTest(d[0],d[1],d[2]);document.getElementById("demoSteps").innerHTML=d[3].map((s,i)=>`<div class="step"><span class="num">${i+1}</span><span class="small">${s}</span></div>`).join("")}
+function format(d){return `ECCE AskDesk Uganda\nRole: ${selectedRole}\nTopic: ${selectedTopic}\n\nSimple answer:\n${d.simple_answer}\n\nWhat the Policy says:\n${d.policy_basis}\n\nWhat to do next:\n${(d.next_steps||[]).map((s,i)=>`${i+1}. ${s}`).join("\n")}\n\nWho is responsible:\n${d.responsible_actor}\n\nSource:\n${d.source_label}\nChunks: ${(d.source_chunk_ids||[]).join(", ")}\n\nWhen to seek further guidance:\n${d.escalation_note}`}
+async function ask(){let q=document.getElementById("question").value;document.getElementById("answer").innerHTML='<p class="small">Thinking...</p>';try{let r=await fetch(`${API}/api/ask`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q,selected_role:selectedRole,selected_topic:selectedTopic})});let d=await r.json();lastAnswerText=format(d);document.getElementById("answer").innerHTML=`<div class="answer"><section><h4>Simple answer</h4>${d.simple_answer}</section><section><h4>What the Policy says</h4>${d.policy_basis}</section><section><h4>What to do next</h4><ol>${(d.next_steps||[]).map(s=>`<li>${s}</li>`).join("")}</ol></section><section><h4>Who is responsible</h4>${d.responsible_actor}</section><section class="source"><h4>Source</h4>${d.source_label}<br><span class="small">Chunks: ${(d.source_chunk_ids||[]).join(", ")}</span></section><section><h4>When to seek further guidance</h4>${d.escalation_note}</section><button onclick="sendFeedback('${d.answer_record_id}','Accurate')">Accurate</button> <button onclick="sendFeedback('${d.answer_record_id}','Clear')">Clear</button> <button onclick="sendFeedback('${d.answer_record_id}','Needs correction')">Needs correction</button></div>`}catch(e){document.getElementById("answer").innerHTML='<p class="small">The helpdesk engine is not running. Start the backend, then try again.</p>'}}
+async function generateChecklist(){let r=await fetch(`${API}/api/checklist/generate`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({selected_role:selectedRole,selected_topic:selectedTopic,checklist_type:selectedTopic})});let d=await r.json();lastAnswerText=`${d.title}\n\n${d.items.map((s,i)=>`${i+1}. ${s}`).join("\n")}\n\nSource: ${d.source_label}\n\n${d.disclaimer}`;document.getElementById("answer").innerHTML=`<div class="answer"><section><h4>${d.title}</h4><ol>${d.items.map(s=>`<li>${s}</li>`).join("")}</ol></section><section class="source"><h4>Source</h4>${d.source_label}</section><section>${d.disclaimer}</section></div>`}
+function download(n,t){let b=new Blob([t],{type:"text/plain"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;a.click()}
+function copyAnswer(){if(!lastAnswerText){toast("Ask first");return}navigator.clipboard.writeText(lastAnswerText).then(()=>toast("Copied"))}
+function downloadAnswer(){if(!lastAnswerText){toast("Ask first");return}download("ecce_askdesk_answer.txt",lastAnswerText)}
+async function sendFeedback(id,type){await fetch(`${API}/api/feedback`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({answer_record_id:id,feedback_type:type})});toast("Feedback recorded")}
+async function loadCompliance(){try{let r=await fetch(`${API}/api/compliance/items`),d=await r.json();complianceItems=d.items;renderCompliance()}catch(e){document.getElementById("compliance").innerHTML='<p class="small">Start the backend to load the standards checker.</p>'}}
+async function renderCompliance(){let checked=Array.from(document.querySelectorAll(".comp:checked")).map(x=>x.value);let r=await fetch(`${API}/api/compliance/score`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({selected_role:selectedRole,checked_item_ids:checked})}),s=await r.json();document.getElementById("score").innerText=s.score_percent+"%";document.getElementById("category").innerText=s.readiness_category;document.getElementById("bar").style.width=s.score_percent+"%";document.getElementById("scoreNote").innerText=s.note;lastComplianceText=`ECCE Standards Self-Check\nScore: ${s.score_percent}%\nCategory: ${s.readiness_category}\n\nGaps:\n${(s.unchecked_items||[]).map((i,n)=>`${n+1}. ${i.compliance_area}: ${i.corrective_action} (${i.source_label})`).join("\n")}\n\n${s.disclaimer}`;document.getElementById("compliance").innerHTML=complianceItems.map(i=>`<div class="checkItem"><label><input class="comp" type="checkbox" value="${i.item_id}" onchange="renderCompliance()" ${checked.includes(i.item_id)?"checked":""}> ${i.question}</label>${checked.includes(i.item_id)?"":`<div class="warning"><b>Action:</b> ${i.corrective_action}</div>`}<p class="small">Source: ${i.source_label}</p></div>`).join("")}
+function downloadCompliance(){download("ecce_standards_self_check.txt",lastComplianceText||"No self-check completed yet.")}
+function resetCompliance(){document.querySelectorAll(".comp").forEach(x=>x.checked=false);renderCompliance()}
+function tab(x){document.getElementById("testTab").classList.toggle("hidden",x!=="test");document.getElementById("adminTab").classList.toggle("hidden",x!=="admin");document.getElementById("testBtn").classList.toggle("active",x==="test");document.getElementById("adminBtn").classList.toggle("active",x==="admin")}
+async function importChunks(){try{let data=JSON.parse(document.getElementById("adminJson").value);let r=await fetch(`${API}/api/admin/chunks/import`,{method:"POST",headers:{"Content-Type":"application/json","x-admin-token":"ecce-admin-demo"},body:JSON.stringify(data)});document.getElementById("adminStatus").innerText=JSON.stringify(await r.json())}catch(e){document.getElementById("adminStatus").innerText="Invalid JSON or import failed"}}
+async function loadFAQs(){document.getElementById("faqStatus").innerText="Loading FAQs...";try{let r=await fetch(`${API}/api/faqs`);let d=await r.json();faqCache=d.faqs&&d.faqs.length?d.faqs:EMBEDDED_FAQS}catch(e){faqCache=EMBEDDED_FAQS}renderFAQList()}
+function renderFAQList(){if(!faqCache.length)faqCache=EMBEDDED_FAQS;let q=(document.getElementById("faqSearch")?.value||"").toLowerCase();let filter=(document.getElementById("faqFilter")?.value||"").toLowerCase();let list=faqCache.filter(f=>(!q||f.question.toLowerCase().includes(q))&&(!filter||f.question.toLowerCase().includes(filter))).slice(0,60);document.getElementById("faqStatus").innerText=`Showing ${list.length} of ${faqCache.length} FAQs`;document.getElementById("faqList").innerHTML=list.map(f=>`<details class="faqItem"><summary>${f.faq_number||""}. ${f.question}</summary><div class="faqMeta">${(f.primary_chunk_ids||[]).map(id=>`<span class="pill">${id}</span>`).join("")}</div><button onclick="showPage('tool');setTimeout(()=>{document.getElementById('question').value=\`${f.question.replace(/`/g,"'")}\`;document.getElementById('question').focus();},150)">Ask this question</button></details>`).join("")}
+async function submitFeedbackPage(){
+let role=document.getElementById("fbRole").value;
+let goal=document.getElementById("fbGoal").value;
+let worked=document.getElementById("fbWorked").value;
+let improve=document.getElementById("fbText").value;
+let contact=document.getElementById("fbContact").value;
+let subject=encodeURIComponent("ECCE AskDesk Uganda Feedback");
+let body=encodeURIComponent(`Role: ${role}
+
+What I was trying to do:
+${goal}
+
+What worked well:
+${worked}
+
+What should be improved:
+${improve}
+
+Optional contact:
+${contact}`);
+window.location.href=`mailto:namara284@gmail.com?subject=${subject}&body=${body}`;
+document.getElementById("fbStatus").innerText="Your email app has been opened with the feedback message addressed to namara284@gmail.com. Please review and send it.";
+toast("Opening email app");
+}
+renderRoles();renderTopics();renderTests();loadCompliance();
+</script>
+</body>
+</html>
